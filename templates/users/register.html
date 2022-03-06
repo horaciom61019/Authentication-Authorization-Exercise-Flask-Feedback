@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %} Register {% endblock  %}
+
+{% block content %}
+<h1 class="display-1">Sign Up</h1>
+<p class="lead">It's easy! Register below to join!</p>
+
+<form method="POST">
+    {% include 'form.html' %}
+    <button class="btn btn-success" type="submit">Register</button>
+</form>
+{% endblock %}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flask Feedback - {% block title %}{% endblock %} </title>
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+
+        <nav class="navbar navbar-light bg-primary justify-content-between ">
+            <div class="container">
+                <a href="/" class="navbar-brand text-light">Flask Feedback</a>
+                <ul class="nav navbar-nav flex-row float-right">
+                    {% if session['username'] %}
+                    <li class="nav-item">
+                        <a class="nav-link mr-5 text-light" href="/logout">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link text-light" style="margin-right: 5px" href="/login">Login | </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/register">Sign up</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container mt-5">
+
+            {% for category, msg in get_flashed_messages(with_categories=True) %}
+            <div class="alert alert-{{category}}">{{ msg }}</div>
+            {% endfor %}
+
+            {% block content %}
+            <!-- Content will display here -->
+            {% endblock %}
+
+        </div>
+    </body>
+</html>
